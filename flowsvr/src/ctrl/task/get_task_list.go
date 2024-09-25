@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/niuniumart/asyncflow/flowsvr/src/ctrl/ctrlmodel"
-	"github.com/niuniumart/asyncflow/taskutils/rpc/model"
+	"github.com/takkujunjieli/AsyncTaskScheduler/flowsvr/src/ctrl/ctrlmodel"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/rpc/model"
 
-	"github.com/niuniumart/asyncflow/flowsvr/src/constant"
-	"github.com/niuniumart/asyncflow/flowsvr/src/db"
+	"github.com/takkujunjieli/AsyncTaskScheduler/flowsvr/src/constant"
+	"github.com/takkujunjieli/AsyncTaskScheduler/flowsvr/src/db"
 
 	"github.com/niuniumart/gosdk/martlog"
 

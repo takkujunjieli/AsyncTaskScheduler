@@ -11,11 +11,11 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/niuniumart/asyncflow/taskutils/constant"
-	"github.com/niuniumart/asyncflow/taskutils/rpc"
-	"github.com/niuniumart/asyncflow/taskutils/rpc/model"
 	"github.com/niuniumart/gosdk/martlog"
 	"github.com/niuniumart/gosdk/tools"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/constant"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/rpc"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/rpc/model"
 )
 
 const (

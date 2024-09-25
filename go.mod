@@ -1,4 +1,4 @@
-module github.com/niuniumart/asyncflow
+module github.com/takkujunjieli/AsyncTaskScheduler
 
 go 1.16
 

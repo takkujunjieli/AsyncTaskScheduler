@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/niuniumart/asyncflow/taskutils/constant"
-	"github.com/niuniumart/asyncflow/worker/src/initialise"
-	"github.com/niuniumart/asyncflow/worker/src/tasksdk"
 	"github.com/niuniumart/gosdk/martlog"
 	"github.com/niuniumart/gosdk/response"
 	"github.com/niuniumart/gosdk/tools"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/constant"
+	"github.com/takkujunjieli/AsyncTaskScheduler/worker/src/initialise"
+	"github.com/takkujunjieli/AsyncTaskScheduler/worker/src/tasksdk"
 )
 
 func main() {

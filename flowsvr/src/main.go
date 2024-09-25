@@ -12,24 +12,33 @@ import (
 )
 
 func main() {
-	// 初始化配置
+	// Initialize configuration settings
 	config.Init()
-	// 初始资源，主要是MySQL连接
+
+	// Initialize necessary resources, mainly the MySQL connection
 	err := initialize.InitResource()
 	if err != nil {
-		fmt.Printf("initialize.InitResource err %s", err.Error())
-		martlog.Errorf("initialize.InitResource err %s", err.Error())
+		// Print error to console and log the error using martlog
+		fmt.Printf("initialize.InitResource error: %s", err.Error())
+		martlog.Errorf("initialize.InitResource error: %s", err.Error())
 		return
 	}
-	// 开启任务治理
+
+	// Start task management runtime
 	var rtm rtm.TaskRuntime
 	rtm.Run()
-	// 创建一个web服务
+
+	// Create a web server using the Gin framework
 	router := gin.CreateGin()
-	// 这里跳进去就能看到有哪些接口
+
+	// Register API routes with the router, defining the available endpoints
 	initialize.RegisterRouter(router)
-	fmt.Println("before router run")
-	// 启动web server，这一步之后这个主协程启动会阻塞在这里，请求可以通过gin的子协程进来
+	fmt.Println("Before starting the router")
+
+	// Start the web server and block the main thread here while allowing requests
+	// to be handled concurrently by Gin's child goroutines.
 	err = gin.RunByPort(router, config.Conf.Common.Port)
+
+	// Print any errors encountered when starting the server
 	fmt.Println(err)
 }

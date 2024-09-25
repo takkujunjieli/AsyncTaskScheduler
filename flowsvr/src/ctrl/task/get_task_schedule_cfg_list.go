@@ -3,14 +3,14 @@ package task
 import (
 	"net/http"
 
-	"github.com/niuniumart/asyncflow/taskutils/rpc/model"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/rpc/model"
 
 	"github.com/gin-gonic/gin"
-	"github.com/niuniumart/asyncflow/flowsvr/src/constant"
-	"github.com/niuniumart/asyncflow/flowsvr/src/db"
 	"github.com/niuniumart/gosdk/handler"
 	"github.com/niuniumart/gosdk/martlog"
 	"github.com/niuniumart/gosdk/tools"
+	"github.com/takkujunjieli/AsyncTaskScheduler/flowsvr/src/constant"
+	"github.com/takkujunjieli/AsyncTaskScheduler/flowsvr/src/db"
 )
 
 // GetTaskScheduleCfgListHandler

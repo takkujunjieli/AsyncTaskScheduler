@@ -2,9 +2,9 @@ package initialize
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/niuniumart/asyncflow/flowsvr/src/ctrl/task"
-	"github.com/niuniumart/asyncflow/flowsvr/src/db"
 	"github.com/niuniumart/gosdk/martlog"
+	"github.com/takkujunjieli/AsyncTaskScheduler/flowsvr/src/ctrl/task"
+	"github.com/takkujunjieli/AsyncTaskScheduler/flowsvr/src/db"
 )
 
 // InitResource 初始化服务资源

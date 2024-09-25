@@ -1,8 +1,8 @@
 package ctrlmodel
 
 import (
-	"github.com/niuniumart/asyncflow/flowsvr/src/db"
-	"github.com/niuniumart/asyncflow/taskutils/rpc/model"
+	"github.com/takkujunjieli/AsyncTaskScheduler/flowsvr/src/db"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/rpc/model"
 )
 
 /**

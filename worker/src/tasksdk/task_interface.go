@@ -5,22 +5,23 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/niuniumart/asyncflow/taskutils/constant"
-	"github.com/niuniumart/asyncflow/taskutils/rpc"
-	"github.com/niuniumart/asyncflow/taskutils/rpc/model"
+	"time"
+
 	"github.com/niuniumart/gosdk/martlog"
 	"github.com/niuniumart/gosdk/tools"
-	"time"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/constant"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/rpc"
+	"github.com/takkujunjieli/AsyncTaskScheduler/taskutils/rpc/model"
 )
 
 var taskHandlerMap = make(map[string]*TaskHandler, 0)
 
-//RegisterHandler func RegisterHandler
+// RegisterHandler func RegisterHandler
 func RegisterHandler(handler *TaskHandler) {
 	taskHandlerMap[handler.TaskType] = handler
 }
 
-//GetHandler func get handler
+// GetHandler func get handler
 func GetHandler(taskType string) (*TaskHandler, int) {
 	if _, ok := taskHandlerMap[taskType]; ok {
 		return taskHandlerMap[taskType], 0
@@ -28,13 +29,13 @@ func GetHandler(taskType string) (*TaskHandler, int) {
 	return nil, -1
 }
 
-//TaskHandler struct TaskHandler
+// TaskHandler struct TaskHandler
 type TaskHandler struct {
 	TaskType string
 	NewProc  func() TaskIntf
 }
 
-//TaskIntf Task interface
+// TaskIntf Task interface
 type TaskIntf interface {
 	ContextLoad() error
 	HandleProcess() error
@@ -46,7 +47,7 @@ type TaskIntf interface {
 	HandleFailedMust() error
 }
 
-//TaskBase struct TaskBase
+// TaskBase struct TaskBase
 type TaskBase struct {
 	Id               uint64
 	TaskId           string
@@ -66,30 +67,30 @@ type TaskBase struct {
 	ModifyTime       time.Time
 }
 
-//ScheduleLog struct ScheduleLog
+// ScheduleLog struct ScheduleLog
 type ScheduleLog struct {
 	LastData     ScheduleData
 	HistoryDatas []ScheduleData
 }
 
-//ScheduleData struct ScheduleData
+// ScheduleData struct ScheduleData
 type ScheduleData struct {
 	TraceId string
 	ErrMsg  string
 	Cost    string
 }
 
-//Base func get base struct
+// Base func get base struct
 func (p *TaskBase) Base() *TaskBase {
 	return p
 }
 
-//SetContextLocal func set context local
+// SetContextLocal func set context local
 func (p *TaskBase) SetContextLocal(data interface{}) {
 	p.ContextIntf = data
 }
 
-//GetTaskInfoFromStorage func get task info from rpc
+// GetTaskInfoFromStorage func get task info from rpc
 func GetTaskInfoFromStorage(storage *model.TaskData) (TaskIntf, error) {
 	handler, ok := taskHandlerMap[storage.TaskType]
 	if !ok {
@@ -122,27 +123,27 @@ func GetTaskInfoFromStorage(storage *model.TaskData) (TaskIntf, error) {
 	return t, nil
 }
 
-//HandleFinishError handle finish error
+// HandleFinishError handle finish error
 func (p *TaskBase) HandleFinishError() error {
 	return nil
 }
 
-//HandleFailedMust if err, then change status from failed to processing
+// HandleFailedMust if err, then change status from failed to processing
 func (p *TaskBase) HandleFailedMust() error {
 	return nil
 }
 
-//HandleFinishMust handle finish HandleFinishMust
+// HandleFinishMust handle finish HandleFinishMust
 func (p *TaskBase) HandleFinishMust() error {
 	return nil
 }
 
-//ContextLoad context load
+// ContextLoad context load
 func (p *TaskBase) ContextLoad() error {
 	return nil
 }
 
-//SetTask set task
+// SetTask set task
 func (p *TaskBase) SetTask() error {
 	var shortRpc = rpc.TaskRpc{
 		Host: taskSvrHost,
@@ -179,7 +180,7 @@ func (p *TaskBase) SetTask() error {
 	return nil
 }
 
-//CreateTask func create task
+// CreateTask func create task
 func (p *TaskBase) CreateTask() (string, error) {
 	var taskData model.TaskData
 	taskData.Status = p.Status
@@ -203,7 +204,7 @@ func (p *TaskBase) CreateTask() (string, error) {
 	return resp.TaskId, nil
 }
 
-//GetTask func get task
+// GetTask func get task
 func GetTask(taskId string) (TaskIntf, error) {
 	var shortRpc = rpc.TaskRpc{
 		Host: taskSvrHost,
